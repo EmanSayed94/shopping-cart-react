@@ -63,9 +63,11 @@ footer {
 }
 .main-content {
   flex: 3 60rem;
+  /* width: 60rem; */
 }
 .sidebar {
   flex: 1 20rem;
+  /* width: 20rem; */
 }
 /* products */
 
@@ -80,7 +82,8 @@ footer {
   list-style-type: none;
 }
 .products li {
-  flex: 0 1 29rem;
+  /* flex: 0 1 29rem; */
+  width: 29rem;
   height: 47rem;
   padding: 1rem;
 }
@@ -118,4 +121,16 @@ footer {
 }
 .button.primary {
   background-color: #f0c040;
+}
+/* filter */
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.filter div {
+  flex: 1;
 }
