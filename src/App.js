@@ -3,12 +3,14 @@ import data from "./data.json";
 
 import Products from "./components/Products";
 import Filter from "./components/Filter/index";
+import Cart from "./components/Cart";
 class App extends Component {
   state = {
     products: data.products,
     sort: "",
     size: "",
     count: 3,
+    cartItems: [],
   };
   sortProductsHandle = (e) => {
     const sortValue = e.target.value;
@@ -42,8 +44,33 @@ class App extends Component {
         ));
     this.setState({ size: selectedSize, products });
   };
+  addToCartHandle = (product) => {
+    const cartItems = [...this.state.cartItems];
+    let alreadyExist = false;
+    // if (cartItems.length !== 0) {
+    cartItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count++;
+        alreadyExist = true;
+      }
+    });
+    if (!alreadyExist) {
+      cartItems.push({ ...product, count: 1 });
+    }
+
+    console.log("cartItems :>> ", cartItems);
+
+    this.setState({ cartItems });
+  };
+  removeFromCartHandle = (product) => {
+    let cartItems = [...this.state.cartItems];
+    cartItems = cartItems.filter((item) => item._id !== product._id);
+    this.setState({ cartItems });
+  };
+
   render() {
-    const { products, size, sort } = this.state;
+    const { products, size, sort, cartItems } = this.state;
+    const { addToCartHandle, removeFromCartHandle } = this;
 
     return (
       <div className="grid-container">
@@ -60,9 +87,14 @@ class App extends Component {
                 sortProducts={this.sortProductsHandle}
                 filterProducts={this.filterProductsHandle}
               />
-              <Products products={products} />
+              <Products products={products} addToCart={addToCartHandle} />
             </div>
-            <div className="sidebar">cart itrms</div>
+            <div className="sidebar">
+              <Cart
+                cartItems={cartItems}
+                removeFromCart={removeFromCartHandle}
+              />
+            </div>
           </div>
         </main>
         <footer> All Rights Are Reserved</footer>
