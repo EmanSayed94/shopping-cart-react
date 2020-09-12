@@ -1,5 +1,5 @@
 import React from "react";
-const Product = ({ product }) => {
+const Product = ({ product, addToCart }) => {
   return (
     <li>
       <div className="product">
@@ -9,7 +9,9 @@ const Product = ({ product }) => {
         </a>
         <div className="product-price">
           <div>${product.price}</div>
-          <button className="button primary">Add To Cart</button>
+          <button onClick={() => addToCart(product)} className="button primary">
+            Add To Cart
+          </button>
         </div>
       </div>
     </li>
