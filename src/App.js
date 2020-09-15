@@ -10,7 +10,9 @@ class App extends Component {
     sort: "",
     size: "",
     count: 3,
-    cartItems: [],
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
   };
   sortProductsHandle = (e) => {
     const sortValue = e.target.value;
@@ -61,16 +63,20 @@ class App extends Component {
     console.log("cartItems :>> ", cartItems);
 
     this.setState({ cartItems });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
   removeFromCartHandle = (product) => {
     let cartItems = [...this.state.cartItems];
     cartItems = cartItems.filter((item) => item._id !== product._id);
     this.setState({ cartItems });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
-
+  orderCreation = (order) => {
+    alert("need to save order for " + order.name);
+  };
   render() {
     const { products, size, sort, cartItems } = this.state;
-    const { addToCartHandle, removeFromCartHandle } = this;
+    const { addToCartHandle, removeFromCartHandle, orderCreation } = this;
 
     return (
       <div className="grid-container">
@@ -93,6 +99,7 @@ class App extends Component {
               <Cart
                 cartItems={cartItems}
                 removeFromCart={removeFromCartHandle}
+                orderCreation={orderCreation}
               />
             </div>
           </div>
