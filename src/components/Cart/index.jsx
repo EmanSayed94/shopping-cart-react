@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import CheckoutForm from "../CheckOutForm";
 class Cart extends Component {
-  state = {};
+  state = {
+    email: "",
+    name: "",
+    address: "",
+
+    showCheckOut: false,
+  };
   calculateTotal = (cartItems) => {
     const total = cartItems.reduce(
       (acc, item) => acc + item.price * item.count,
@@ -8,8 +15,25 @@ class Cart extends Component {
     );
     return total;
   };
+  handleInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  createOrder = (e) => {
+    e.preventDefault();
+    const { email, name, address } = this.state;
+    console.log(email);
+
+    const order = {
+      email,
+      name,
+      address,
+      cartItems: this.props.cartItems,
+    };
+    this.props.orderCreation(order);
+  };
   render() {
     const { cartItems, removeFromCart } = this.props;
+    const { name, email, address } = this.state;
     return (
       <div>
         {!cartItems.length ? (
@@ -47,9 +71,23 @@ class Cart extends Component {
               <div className="cart">
                 <div className="total">
                   <div> Total: ${this.calculateTotal(cartItems)}</div>
-                  <button className="button primary">Proceed</button>
+                  <button
+                    onClick={() => this.setState({ showCheckOut: true })}
+                    className="button primary"
+                  >
+                    Proceed
+                  </button>
                 </div>
               </div>
+            )}
+            {this.state.showCheckOut && (
+              <CheckoutForm
+                email={email}
+                name={name}
+                address={address}
+                createOrder={this.createOrder}
+                handleInput={this.handleInput}
+              />
             )}
           </React.Fragment>
         )}
