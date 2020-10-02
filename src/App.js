@@ -74,6 +74,7 @@ class App extends Component {
   orderCreation = (order) => {
     alert("need to save order for " + order.name);
   };
+  //test
   render() {
     const { products, size, sort, cartItems } = this.state;
     const { addToCartHandle, removeFromCartHandle, orderCreation } = this;
