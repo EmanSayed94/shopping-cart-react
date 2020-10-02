@@ -1,9 +1,15 @@
 import React from "react";
+import Fade from "react-reveal/Fade"
+
+
 const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
   console.log(email);
   return (
     <div className="cart">
       <form onSubmit={createOrder}>
+       <Fade right cascade>
+
+       
         <ul className="form-container">
           <li>
             {" "}
@@ -43,6 +49,7 @@ const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
             </button>
           </li>
         </ul>
+        </Fade>
       </form>
     </div>
   );

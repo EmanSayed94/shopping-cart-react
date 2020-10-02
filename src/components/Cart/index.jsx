@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import Fade  from 'react-reveal/Fade';
+
 import CheckoutForm from "../CheckOutForm";
+
+
+
 class Cart extends Component {
   state = {
     email: "",
@@ -45,6 +50,7 @@ class Cart extends Component {
             </div>
 
             <div className="cart">
+              <Fade left cascade>
               <ul className="cart-items">
                 {cartItems.map((item) => (
                   <li key={item._id} className="cart-item">
@@ -66,7 +72,9 @@ class Cart extends Component {
                   </li>
                 ))}
               </ul>
+              </Fade>
             </div>
+
             {cartItems.length != 0 && (
               <div className="cart">
                 <div className="total">
