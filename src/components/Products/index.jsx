@@ -24,9 +24,8 @@ class Products extends Component {
 				<Fade bottom cascade>
 					<ul className="products">
 						{this.props.products.map((product) => (
-							<li>
+							<li key={product.id}>
 								<Product
-									key={product.id}
 									product={product}
 									addToCart={addToCart}
 									openModal={this.openModal}
@@ -42,7 +41,7 @@ class Products extends Component {
 								x
 							</button>
 							<div className="product-details">
-								<img src={product.image} alt="product-image" />
+								<img src={`/images/${product.image}`} alt="product-image" />
 								<div className="product-details-description">
 									<p>
 										<strong>{product.title}</strong>
