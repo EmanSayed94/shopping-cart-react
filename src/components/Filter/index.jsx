@@ -2,12 +2,13 @@ import React, { Component } from "react";
 class Filter extends Component {
   state = {};
   render() {
+    const {size,sort,count,filterAndSort}=this.props;
     return (
       <div className="filter">
-        <div className="filter-result">{this.props.count} Products</div>
+        <div className="filter-result">{count} Products</div>
         <div className="filter-sort">
           Order {""}
-          <select value={this.props.sort} onChange={this.props.sortProducts}>
+          <select value={sort} onChange={(e)=>filterAndSort(size,e.target.value)}>
             <option value="">Latset</option>
             <option value="Lowest">Lowest</option>
             <option value="Highest">Highest</option>
@@ -15,7 +16,7 @@ class Filter extends Component {
         </div>
         <div className="filter-size">
           Sizes {""}
-          <select value={this.props.size} onChange={this.props.filterProducts}>
+          <select value={size} onChange={(e)=>filterAndSort(e.target.value,sort)}>
             <option value="">All</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
