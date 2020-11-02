@@ -2,14 +2,10 @@ import React from "react";
 import Fade from "react-reveal/Fade"
 
 
-const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
-  console.log(email);
-  return (
+const CheckOutForm = ({ email, name, address, handleEmail,handleAddress,handleName, createOrder }) => (
     <div className="cart">
       <form onSubmit={createOrder}>
        <Fade right cascade>
-
-       
         <ul className="form-container">
           <li>
             {" "}
@@ -17,7 +13,7 @@ const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
             <input
               type="email"
               required
-              onChange={handleInput}
+              onChange={handleEmail}
               name="email"
               value={email}
             />
@@ -28,7 +24,7 @@ const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
             <input
               type="text"
               required
-              onChange={handleInput}
+              onChange={handleName}
               name="name"
               value={name}
             />
@@ -38,7 +34,7 @@ const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
             <input
               type="text"
               required
-              onChange={handleInput}
+              onChange={handleAddress}
               name="address"
               value={address}
             />
@@ -53,6 +49,6 @@ const CheckOutForm = ({ email, name, address, handleInput, createOrder }) => {
       </form>
     </div>
   );
-};
+
 
 export default CheckOutForm;

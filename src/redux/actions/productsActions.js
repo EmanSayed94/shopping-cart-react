@@ -1,8 +1,8 @@
 // import { GET_ALL_PRODUCTS } from '../actionTypes';
 
 import axios from "axios"
-import { GET_ALL_PRODUCTS ,FILTER_PRODUCTS_BY_SIZE,FILTER_AND_SORT} from "../actionTypes";
-import { SORT_PRODUCTS_BY_PRICE } from './../actionTypes';
+import { GET_ALL_PRODUCTS ,FILTER_PRODUCTS_BY_SIZE,SORT_PRODUCTS_BY_PRICE} from "../actionTypes";
+
 
 export const getAllProducts = () => {
 	return async (dispatch) => {

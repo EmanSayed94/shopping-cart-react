@@ -1,7 +1,5 @@
 import {
 	GET_ALL_PRODUCTS,
-	FILTER_PRODUCTS_BY_SIZE,
-	SORT_PRODUCTS_BY_PRICE,
 	FILTER_AND_SORT,
 } from "./../actionTypes";
 const initialState = {
