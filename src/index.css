@@ -40,11 +40,14 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.5rem;
+  /* height: 100px; */
+  /* width: ; */
+  padding: 3rem;
 }
 header a {
   color: white;
   text-decoration: none;
+  margin-left: 4rem;
 }
 main {
   grid-area: main;
@@ -56,6 +59,35 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.login-container{
+  background-color: #eff9fe;
+  height: 100vh;display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+}
+.login-form{
+
+  border: 1px solid rgb(250, 243, 243);
+  padding: 30px;
+  max-width: 40%;
+  box-shadow: 10px 10px 5px 5px rgb(216, 211, 211);
+  background-color: white;
+  
+  /* background-color: rgb(226, 182, 182); */
+}
+.login-buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  flex-wrap: wrap;
+ 
+}
+.login-form-button{
+  /* margin-left: 2rem;
+  margin-top: 2rem; */
 }
 .content {
   display: flex;
@@ -86,6 +118,7 @@ footer {
   width: 29rem;
   height: 47rem;
   padding: 1rem;
+  margin:0 1.5rem
 }
 .product {
   display: flex;
@@ -100,6 +133,7 @@ footer {
 .product-price {
   display: flex;
   justify-content: space-between;
+  /* width: 100%; */
   align-items: center;
 }
 .product-price div,
@@ -255,3 +289,17 @@ td {
 th {
   text-align: left;
 }
+@media only screen and (max-width: 760px) {
+.login-form{
+  max-width: 85%;
+}
+.login-buttons{
+  display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ /* align-items: ; */
+
+  flex-wrap: wrap;
+ 
+}
+  }

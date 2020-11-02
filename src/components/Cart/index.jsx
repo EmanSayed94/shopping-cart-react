@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React  from "react";
+import { useCallback } from "react";
 import { useState } from "react";
 import Fade from "react-reveal/Fade";
 
@@ -11,23 +12,25 @@ const Cart = (props) => {
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
+	const [total,setTotal]=useState(null);
 	const [showCheckOut, setShowCheckOut] = useState(false);
 
-	const handleEmail = (e) => {
+	const handleEmail = useCallback((e) => {
 		setEmail(e.target.value);
-	};
-	const handleName = (e) => {
+	},[])
+	const handleName = useCallback((e) => {
 		setName(e.target.value);
-	};
-	const handleAddress = (e) => {
+	},[])
+	const handleAddress = useCallback((e) => {
 		setAddress(e.target.value);
-	};
+	},[])
 
 	const calculateTotal = (cartItems) => {
 		const total = cartItems.reduce(
 			(acc, item) => acc + item.price * item.count,
 			0
 		);
+		// setTotal(total);
 		return total;
 	};
 
@@ -37,7 +40,8 @@ const Cart = (props) => {
 			email,
 			name,
 			address,
-			cartItems: props.cartItems,
+			cartItems,
+			// total
 		};
 		orderCreation(order);
 	};
@@ -47,7 +51,7 @@ const Cart = (props) => {
 			{!cartItems.length ? (
 				<div className="cart cart-header">no item in the cart</div>
 			) : (
-				<React.Fragment>
+				<>
 					<div className="cart cart-header">
 						You have {cartItems.length} item in Cart
 					</div>
@@ -78,7 +82,7 @@ const Cart = (props) => {
 						</Fade>
 					</div>
 
-					{cartItems.length != 0 && (
+					{cartItems.length !== 0 && (
 						<div className="cart">
 							<div className="total">
 								<div> Total: ${formatCurrency(calculateTotal(cartItems))}</div>
@@ -102,7 +106,7 @@ const Cart = (props) => {
 							handleAddress={handleAddress}
 						/>
 					)}
-				</React.Fragment>
+				</>
 			)}
 		</div>
 	);

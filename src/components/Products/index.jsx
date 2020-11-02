@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React ,{useCallback}from "react";
 import Fade from "react-reveal/Fade";
 import Zoom from "react-reveal/Zoom";
 import Modal from "react-modal";
@@ -10,12 +10,12 @@ import { useState } from "react";
 const Products = (props) => {
 	const [product, setProduct] = useState(null);
 
-	const openModal = (product) => {
+	const openModal = useCallback((product) => {
 		setProduct(product);
-	};
-	const closeModal = () => {
-		setProduct(product);
-	};
+	},[])
+	const closeModal = useCallback(() => {
+		setProduct(null);
+	},[])
 
 	return (
 		<div>
@@ -39,7 +39,7 @@ const Products = (props) => {
 							x
 						</button>
 						<div className="product-details">
-							<img src={`/images/${product.image}`} alt="product-image" />
+							<img src={`/images/${product.image}`} alt="product" />
 							<div className="product-details-description">
 								<p>
 									<strong>{product.title}</strong>
